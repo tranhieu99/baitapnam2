@@ -1,0 +1,22 @@
+<div class="row replace-area">
+    <div class="col-sm-6 col-md-4">
+            <img src="<%= data.result[0].Avatar %>" alt="" class="img-rounded img-responsive" style="height:200px "/>
+            <form action="/profile" method="post" enctype="multipart/form-data" >
+                <input type="hidden" value="<%= data.result[0].MaHocSinh %>" name="mahs">
+                <input type="file" name="avatar" style="width:79px; margin-top:8px; margin-bottom:8px;"/>
+                <button type="submit">Xác nhận </button>
+            </form>															
+    </div>
+    <div class="col-sm-6 col-md-8">
+            <h4><%= data.result[0].TenHocSinh %></h4>
+            <small><cite title="San Francisco, USA">Địa chỉ: <%= data.result[0].DiaChi %> <i class="glyphicon glyphicon-map-marker">
+            </i></cite></small>
+            <br>
+            <br>
+                <div class="thongtin"><i class="fa fa-transgender"></i><p> Giới tính: <%= data.result[0].GioiTinh %> </p></div> 
+                 <div class="thongtin" ><i class="glyphicon glyphicon-gift"></i> <p class="ngaysinh"><%= data.result[0].NgaySinh %></p></div>   
+                 <div class="thongtin"><i class="fa fa-phone-square"></i> <p>Số điện thoại: <%= data.result[0].Sdt %></p></div>   
+                 <div class="thongtin"> <i class="fa fa-phone-square"></i> <p>Số điện thoại phụ huynh: <%= data.result[0].SdtPhuHuynh %></p>
+                 </div>   
+    </div>
+</div>

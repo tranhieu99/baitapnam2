@@ -1,0 +1,18 @@
+<tbody class="allStudent">
+	<% if(data) { %>
+		<% for(var i = 0; i < data.student.length; i++ ) { %>
+      <tr>
+	   <td ><%=data.student[i].MaHocSinh %></td>
+	   <td><%=data.student[i].TenHocSinh %></td>
+	   <td><%=data.student[i].GioiTinh %></td>
+	   <td><%=data.student[i].DiaChi %></td>
+	   <td><%=data.student[i].Sdt %></td>
+	   <td><%=data.student[i].SdtPhuHuynh %></td>
+	   <td ><%=data.student[i].MaLop %></td>
+	   <td><%=data.student[i].GhiChu %></td>
+	   <td ><a href="/student/delete/<%=data.student[i].MaHocSinh %>/<%=data.student[i].MaLop %>"button class="btn btn-danger xoabtn" >Xóa </button></a></td>
+		 <td><a href="/student/edit/<%=data.student[i].MaHocSinh %>"><button class="btn btn-primary" >Sửa</button></a></td>
+	  </tr>
+	  <% } %>
+    <% } %> 
+    </tbody>

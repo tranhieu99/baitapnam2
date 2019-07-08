@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Quản lý học sinh nghỉ học</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<link href="css/datepicker3.css" rel="stylesheet">
+	<link href="css/styles.css" rel="stylesheet"> 
+	<link rel="icon" type="image/png" href="images/icons/teacher.png"/>
+
+	
+	<!--Custom Font-->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+		<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span></button>
+				<a class="navbar-brand" href="#"><span>Thầy</span>Ba</a>
+				<p class="chude">Thông tin nghỉ phép %></p>
+			</div>
+		</div><!-- /.container-fluid -->
+	</nav>
+	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+		<div class="profile-sidebar">
+			<div class="profile-userpic">
+				<img src="images/avatar-01.jpg" class="img-responsive" alt="">
+			</div>
+			<div class="profile-usertitle">
+				<div class="profile-usertitle-name">Thầy giáo Ba</div>
+				<div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="divider"></div>
+		<form role="search">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Search">
+			</div>
+		</form>
+		<ul class="nav menu">
+			<li><a href="/"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
+			<li ><a href="/class"><em class="fa fa-calendar">&nbsp;</em> Danh Sách lớp học</a></li>
+			<li><a href="/newstudent"><em class="fa fa-graduation-cap">&nbsp;</em> Thêm học sinh mới</a></li>
+			<li class="active"><a href="/nghiphep"><em class="fa fa-toggle-off">&nbsp;</em> Quản lý nghỉ phép</a></li>
+			<li><a href="/login"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+		</ul>
+	</div><!--/.sidebar-->
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="row">
+					<ol class="breadcrumb">
+						<li><a href="/">
+							<em class="fa fa-home"></em>
+						</a></li>
+						<li class="active">Quản lý nghỉ phép </li>
+					</ol>
+				</div><!--/.row-->
+    <div class="row">
+        <div class="col-md-12">
+						<button class="btn btn-success" style="float:left; margin-top:30px;margin-bottom:20px" data-toggle="modal" data-target="#nhaphsnghi">Thêm</button>	
+            <!-- <div class="well well-sm">
+                <form class="form-horizontal" method="post">
+                    <fieldset>
+                        <legend class="text-center header">Nhập thông tin nghỉ học của học sinh</legend>
+
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                            <div class="col-md-8">
+                                <input id="mahs" name="mahsnghi" type="text" placeholder="Mã học sinh xin nghỉ" class="form-control">
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-bookmark"></i></span>
+                            <div class="col-md-8">
+                                <input id="mahs" name="lydo" type="text" placeholder="Lý do xin nghỉ" class="form-control">
+                            </div>
+                        </div>
+                     		<button type="button" class="btn btn-success nghiphepbtn" style="display: block; margin: 0 auto;">Xác nhận</button>
+                    </fieldset>
+                </form>
+            </div> -->
+            <table class="table table-bordered" style="padding: 0 15px">
+      <legend class="text-center header">Bảng dữ liệu học sinh nghỉ học</legend>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Mã học sinh</th>
+      <th scope="col">Tên học sinh</th>
+			<th scope="col">Lý do nghỉ</th>
+			<th scope="col">Số điện thoại</th>
+			<th scope="col">Số điện thoại phụ huynh</th>
+			<th scope="col">Ngày xin nghỉ</th>
+    </tr>
+  </thead>
+  <tbody>
+		<% for(var i = 0; i < data.result.length; i++) {%>
+    <tr>
+      <th scope="row"><%=data.result[i].id %></th>
+      <td><%=data.result[i].MaHocSinh %></td>
+      <td><%=data.result[i].TenHocSinh %></td>
+			<td><%=data.result[i].LyDoNghi %></td>
+			<td><%=data.result[i].Sdt %></td>
+			<td><%=data.result[i].SdtPhuHuynh %></td>
+			<td><%=data.result[i].NgayTao %></td>
+    </tr>
+    <% } %>
+  </tbody>
+</table>
+
+        </div>
+    </div>
+
+	
+	</div>	<!--/.main-->
+	<div class="modal fade" id="nhaphsnghi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+			  <div class="modal-content">
+				<div class="modal-header">
+				  <h5 class="modal-title" id="exampleModalLabel">Quản lý nghỉ phép</h5>
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				  </button>
+				</div>
+				<div class="modal-body">
+						<div class="well well-sm">
+                <form class="form-horizontal" method="post">
+                    <fieldset>
+                        <legend class="text-center header">Nhập thông tin nghỉ học của học sinh</legend>
+
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                            <div class="col-md-8">
+                                <input id="mahs" name="mahsnghi" type="text" placeholder="Mã học sinh xin nghỉ" class="form-control">
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-bookmark"></i></span>
+                            <div class="col-md-8">
+                                <input id="mahs" name="lydo" type="text" placeholder="Lý do xin nghỉ" class="form-control">
+                            </div>
+                        </div>
+                     		<button type="button" class="btn btn-success nghiphepbtn" style="display: block; margin: 0 auto;">Xác nhận</button>
+                    </fieldset>
+                </form>
+            </div>
+
+				</div>
+			  </div>
+			</div>
+		  </div>
+
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/chart.min.js"></script>
+	<script src="js/chart-data.js"></script>
+	<script src="js/easypiechart.js"></script>
+	<script src="js/easypiechart-data.js"></script>
+	<script src="js/bootstrap-datepicker.js"></script>
+	<script src="js/custom.js"></script>
+	<script src="js/newstudent.js"></script>
+
+</body>
+</html>

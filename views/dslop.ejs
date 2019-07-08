@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Danh sách lớp học</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<link href="css/datepicker3.css" rel="stylesheet">
+	<link href="css/styles.css" rel="stylesheet">
+	<link rel="icon" type="image/png" href="images/icons/teacher.png"/>
+
+	<!--Custom Font-->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span></button>
+				<a class="navbar-brand" href="#"><span>Thầy </span>Ba</a>
+			<p class="chude">Danh sách các lớp học</p>
+			</div>
+		</div><!-- /.container-fluid -->
+	</nav>
+	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+		<div class="profile-sidebar">
+			<div class="profile-userpic">
+				<img src="images/avatar-01.jpg" class="img-responsive" alt="">
+			</div>
+			<div class="profile-usertitle">
+				<div class="profile-usertitle-name">Thầy giáo Ba</div>
+				<div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="divider"></div>
+		<form role="search">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Search">
+			</div>
+		</form>
+		<ul class="nav menu">
+			<li><a href="/"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
+			<li class="active"><a href="/class"><em class="fa fa-calendar">&nbsp;</em> Danh Sách lớp học</a></li>
+			<li><a href="/newstudent"><em class="fa fa-graduation-cap">&nbsp;</em> Thêm học sinh mới</a></li>
+			<li><a href="/nghiphep"><em class="fa fa-toggle-off">&nbsp;</em> Quản lý nghỉ phép</a></li>
+			<li><a href="/login"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+		</ul>
+	</div><!--/.sidebar-->
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+			<div class="row">
+					<ol class="breadcrumb">
+						<li><a href="/">
+							<em class="fa fa-home"></em>
+						</a></li>
+						<li class="active">Danh sách lớp học</li>
+					</ol>
+				</div><!--/.row-->
+	<button class="btn btn-success" style="float:left; margin-top:30px;margin-bottom:20px" data-toggle="modal" data-target="#exampleModal">Thêm</button>	
+		<table class="table table-bordered" style="margin-top: 50px">
+    <thead>
+      <tr>
+        <th>Mã lớp</th>
+        <th>Tên lớp</th>
+		<th>Lịch học</th>
+		<th>Thao tác</th>
+		<th>Thao tác</th>
+		<th>Thao tác</th>
+		
+      </tr>
+    </thead>
+    <tbody>
+		<% for(var i = 0; i < data.print.length; i++) { %> 
+		<tr> 
+        <td><%=data.print[i].malop %></td>
+     
+        <td><%=data.print[i].TenLop %></td>
+      
+		<td><%=data.print[i].LichHoc %></td>   
+		<td><a href="/class/delete/<%=data.print[i].malop %>"> <button class="btn btn-danger" >Xóa</button></a></td>
+		<td><a href="/editclass/<%=data.print[i].malop %>"><button class="btn btn-primary" >Sửa</button></a></td>
+		<td><a href="/student/<%=data.print[i].malop %>"><button type="button" class="btn btn-success">DS học sinh</button></a></td>
+	  </tr>
+	  <% } %>
+    </tbody>
+  </table>
+	</div>	<!--/.main-->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+			  <div class="modal-content">
+				<div class="modal-header">
+				  <h5 class="modal-title" id="exampleModalLabel">Thêm mới 1 lớp học</h5>
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				  </button>
+				</div>
+				<div class="modal-body">
+				  <form method="POST" action="/class">
+					<div class="form-group">
+					  <input type="hidden" name="malop" class="form-control" id="recipient-name">
+					</div>
+					<div class="form-group">
+					  <label for="classname" class="col-form-label">Nhập tên lớp</label>
+					  <input class="form-control" id="classname" type="text" name="tenlop">
+					<div class="form-group">
+					<label for="lichhoc" class="col-form-label">Nhập lịch học</label>
+					<input class="form-control" id="classname" type="text" name="lichhoc">
+				</div>
+				
+				</div>
+				<div class="modal-footer">
+				  <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+				  <button type="submit" class="btn btn-primary">Xác nhận</button>
+				</form>
+
+				</div>
+			  </div>
+			</div>
+		  </div>
+		  
+
+<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/chart.min.js"></script>
+	<script src="js/chart-data.js"></script>
+	<script src="js/easypiechart.js"></script>
+	<script src="js/easypiechart-data.js"></script>
+	<script src="js/bootstrap-datepicker.js"></script>
+	<script src="js/custom.js"></script>
+	<script src="js/edit.js"></script>
+</body>
+</html>

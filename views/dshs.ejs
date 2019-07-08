@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Danh sách học sinh </title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<link href="css/datepicker3.css" rel="stylesheet">
+	<link href="css/styles.css" rel="stylesheet">
+	<link rel="icon" type="image/png" href="images/icons/teacher.png"/>
+
+	<style>
+	.span-none{
+		display: none;
+	}
+	.thongtin{
+		display: flex;
+	}
+	.thongtin i{
+		margin-right:10px;
+		margin-top:3px;
+	}
+	p.ngaysinh {
+    width: 113px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+img{
+	object-fit: cover;
+}
+	</style>
+	<!--Custom Font-->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span></button>
+				<a class="navbar-brand" href="#"><span>Thầy</span>Ba</a>
+				 
+				<p class="chude">Danh Sách lớp </p>
+			</div>
+		</div><!-- /.container-fluid -->
+	</nav>
+	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+		<div class="profile-sidebar">
+			<div class="profile-userpic">
+				<img src="images/avatar-01.jpg" class="img-responsive" alt="">
+			</div>
+			<div class="profile-usertitle">
+				<div class="profile-usertitle-name">Thầy giáo Ba</div>
+				<div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="divider"></div>
+		<form role="search">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Search">
+			</div>
+		</form>
+		<ul class="nav menu">
+			<li><a href="/"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
+			<li ><a href="/class"><em class="fa fa-calendar">&nbsp;</em> Danh Sách lớp học</a></li>
+			<li><a href="/newstudent"><em class="fa fa-graduation-cap">&nbsp;</em> Thêm học sinh mới</a></li>
+			<li><a href="/nghiphep"><em class="fa fa-toggle-off">&nbsp;</em> Quản lý nghỉ phép</a></li>
+			<li><a href="/login"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+		</ul>
+	</div><!--/.sidebar-->
+	
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main" >
+			<div class="row">
+					<ol class="breadcrumb">
+						<li><a href="/">
+							<em class="fa fa-home"></em>
+						</a></li>
+						<li class="active">Danh sách lớp <span class="malop"></span></li>
+					</ol>
+				</div><!--/.row-->
+				<h3 style="text-align:center">Danh sách học sinh lớp số <span class="malop"></span></h3>
+		<div style="margin-top:20px; position:relative"><i class="fa fa-search" style="
+			position: absolute;
+			bottom: 22%;
+			font-size: 25px;
+			right: 12px;
+			color: #808080ab;
+	"></i>	<input type="text" name="timhs" class="form-control" id="timhs" placeholder="Tìm học sinh">
+		</div>
+		<table class="table table-bordered" style="margin-top: 50px">
+    <thead>
+      <tr>
+        <th>Mã số</th>
+        <th>Tên học sinh</th>
+		<th>Giới tính</th>
+		<th>Số điện thoại</th>
+		<th>Số phụ huynh</th>
+		<th>Ghi chú</th>
+		<th>Thao tác</th>
+		<th>Thao tác</th>
+		<th>Thao tác</th>
+      </tr>
+    </thead>
+    <tbody class="allStudent">
+	<% if(data) { %>
+		<% for(var i = 0; i < data.student.length; i++ ) { %>
+      <tr>
+	   <td class="hsma<%=data.student[i].MaHocSinh %>" > <%=data.student[i].MaHocSinh %> </td>
+	   <td><%=data.student[i].TenHocSinh %></td>
+	   <td><%=data.student[i].GioiTinh %></td>
+	   <td><%=data.student[i].Sdt %></td>
+	   <td><%=data.student[i].SdtPhuHuynh %></td>
+		 <td><%=data.student[i].GhiChu %></td>
+		 
+		
+		 <td><button type="button" data-maso="<%=data.student[i].MaHocSinh %>" class="btn btn-primary xemthem-btn" data-toggle="modal" data-target="#tths">
+			Xem thêm
+		</button></td>
+		 <td ><a href="/student/delete/<%=data.student[i].MaHocSinh %>/<%=data.student[i].MaLop %>"button class="btn btn-danger xoabtn" >Xóa </button></a></td>
+		 <td><a href="/student/edit/<%=data.student[i].MaHocSinh %>"><button class="btn btn-primary" >Sửa</button></a></td>
+	  </tr>
+	  <% } %>
+    <% } %> 
+    </tbody>
+  </table>
+	</div>	<!--/.main-->
+	<% for(var i = 0; i < data.student.length; i++ ) { %>
+<input type="hidden" name="getMalop" value="<%=data.student[i].MaLop %>">
+<% } %> 
+<div class="modal fade" id="tths" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Thông tin chi tiết</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+					<div class="row">
+							<div class="col-xs-12 col-sm-6 col-md-6">
+									<div class="well well-sm">
+											<div class="row replace-area">
+													<div class="col-sm-6 col-md-4">
+															<img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" style="object-fit:cover" />
+															<form action="/profile" method="post" enctype="multipart/form-data">
+																<input type="file" name="avatar" />
+															</form>															
+													</div>
+													<div class="col-sm-6 col-md-8">
+															<h4>
+																	Bhaumik Patel</h4>
+															<small><cite title="San Francisco, USA">San Francisco, USA <i class="glyphicon glyphicon-map-marker">
+															</i></cite></small>
+															<p>
+																	<i class="glyphicon glyphicon-envelope"></i>email@example.com
+																	<br />
+																	<i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com">www.jquery2dotnet.com</a>
+																	<br />
+																	<i class="glyphicon glyphicon-gift"></i>June 02, 1988</p>
+															<!-- Split button -->
+															<div class="btn-group">
+																	<button type="button" class="btn btn-primary">
+																			Social</button>
+																	<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+																			<span class="caret"></span><span class="sr-only">Social</span>
+																	</button>
+																	<ul class="dropdown-menu" role="menu">
+																			<li><a href="#">Twitter</a></li>
+																			<li><a href="https://plus.google.com/+Jquery2dotnet/posts">Google +</a></li>
+																			<li><a href="https://www.facebook.com/jquery2dotnet">Facebook</a></li>
+																			<li class="divider"></li>
+																			<li><a href="#">Github</a></li>
+																	</ul>
+															</div>
+													</div>
+											</div>
+									</div>
+							</div>
+					</div>
+			</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/chart.min.js"></script>
+	<script src="js/chart-data.js"></script>
+	<script src="js/easypiechart.js"></script>
+	<script src="js/easypiechart-data.js"></script>
+	<script src="js/bootstrap-datepicker.js"></script>
+	<script src="js/custom.js"></script>
+	<script src="js/newstudent.js"></script>
+	<script>
+	$(document).ready(function () {
+		var xemThemBtn = $(".xemthem-btn");
+		$(xemThemBtn).click(function (e) { 
+				var maHocSinh = $(this).attr("data-maso");
+				var data = {
+					maHocSinh: maHocSinh
+				}
+				$.ajax({
+					type: "POST",
+					url: "/student",
+					data: data,
+					dataType: "html",
+					success: function (response) {
+						$(".replace-area").replaceWith(response);
+					}
+				});
+		});
+	});
+	</script>
+
+</body>
+</html>

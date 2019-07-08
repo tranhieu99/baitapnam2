@@ -15,7 +15,8 @@ router.post("/", (req,res)=>{
         var user = user[0];
      
         if(user.password && user.password == password){
-            res.json({"message" : "success"});
+            res.cookie('userId', user.username)
+            res.redirect("/")
         }
         else  res.render("../views/login.ejs", {data: {error:"Bạn đã nhập sai password"}})
 

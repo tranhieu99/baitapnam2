@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Sửa thông tin học sinh</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<link href="css/datepicker3.css" rel="stylesheet">
+	<link href="css/styles.css" rel="stylesheet">
+	<link rel="icon" type="image/png" href="images/icons/teacher.png"/>
+
+	<!--Custom Font-->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+		<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span></button>
+				<a class="navbar-brand" href="#"><span>Thầy</span>Ba</a>
+				<p class="chude" style="text-transform: uppercase">Sửa thông tin học sinh <%= data.print[0].TenHocSinh %></p>
+			</div>
+		</div><!-- /.container-fluid -->
+	</nav>
+	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+		<div class="profile-sidebar">
+			<div class="profile-userpic">
+				<img src="images/avatar-01.jpg" class="img-responsive" alt="">
+			</div>
+			<div class="profile-usertitle">
+				<div class="profile-usertitle-name">Thầy giáo Ba</div>
+				<div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="divider"></div>
+		<form role="search">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Search">
+			</div>
+		</form>
+		<ul class="nav menu">
+			<li><a href="/"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
+			<li ><a href="/class"><em class="fa fa-calendar">&nbsp;</em> Danh Sách lớp học</a></li>
+			<li class="active"><a href="/newstudent"><em class="fa fa-graduation-cap">&nbsp;</em> Thêm học sinh mới</a></li>
+			<li><a href="/nghiphep"><em class="fa fa-toggle-off">&nbsp;</em> Quản lý nghỉ phép</a></li>
+			<li><a href="panels.html"><em class="fa fa-clone">&nbsp;</em> Alerts &amp; Panels</a></li>
+			<li class="parent "><a data-toggle="collapse" href="#sub-item-1">
+				<em class="fa fa-navicon">&nbsp;</em> Multilevel <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
+				</a>
+				<ul class="children collapse" id="sub-item-1">
+					<li><a class="" href="#">
+						<span class="fa fa-arrow-right">&nbsp;</span> Sub Item 1
+					</a></li>
+					<li><a class="" href="#">
+						<span class="fa fa-arrow-right">&nbsp;</span> Sub Item 2
+					</a></li>
+					<li><a class="" href="#">
+						<span class="fa fa-arrow-right">&nbsp;</span> Sub Item 3
+					</a></li>
+				</ul>
+			</li>
+			<li><a href="/login"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+		</ul>
+	</div><!--/.sidebar-->
+		
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+			<div class="row">
+					<ol class="breadcrumb">
+						<li><a href="/">
+							<em class="fa fa-home"></em>
+						</a></li>
+						<li class="active" >Sửa thông tin học sinh</li>
+					</ol>
+				</div><!--/.row-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="well well-sm">
+                <form class="form-horizontal" method="", action="">
+                    <fieldset>
+                        <legend class="text-center header" >Sửa thông tin học sinh <%= data.print[0].TenHocSinh %> </legend>
+                            <input type="hidden" name="idhocsinh" value="<%= data.print[0].MaHocSinh %>">
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                            <div class="col-md-8">
+                                <input id="tenhocsinh" name="tenhocsinh" type="text" placeholder="Họ tên học sinh" class="form-control" value="<%= data.print[0].TenHocSinh %>">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-transgender bigicon"></i></span>
+                            <div class="col-md-8">
+                                <input id="gioitinh" name="gioitinh" type="text" placeholder="Giới tính" class="form-control" value="<%= data.print[0].GioiTinh %>" >
+                            </div>
+                        </div>
+
+                        
+
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-address-book bigicon"></i></span>
+                            <div class="col-md-8">
+                                <input id="diachi" name="diachi" type="text" placeholder="Địa chỉ" class="form-control" value="<%= data.print[0].DiaChi %>" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-phone-square bigicon"></i></span>
+                            <div class="col-md-8">
+                                <input id="sohocsinh" name="sohocsinh" type="text" placeholder="Số điện thoại học sinh" class="form-control" value="<%= data.print[0].Sdt %>" >
+                            </div>
+                        </div>
+						<div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-phone-square bigicon"></i></span>
+                            <div class="col-md-8">
+                                <input id="sophuhuynh" name="sophuhuynh" type="text" placeholder="Số điện thoại phụ huynh" class="form-control" value="<%= data.print[0].SdtPhuHuynh %>" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-graduation-cap bigicon"></i></span>
+                            <div class="col-md-8">
+                                <input id="malop" name="malop" type="text" placeholder="Mã lớp" class="form-control" value="<%= data.print[0].MaLop %>" > 
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-sticky-note bigicon"></i></span>
+                            <div class="col-md-8">
+                                <input id="ghichu" name="ghichu" type="text" placeholder="Ghi chú" class="form-control" value="<%= data.print[0].GhiChu %>" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <button type="button" class="btn btn-primary btn-lg suahs">Xác nhận</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+	</div>	<!--/.main-->
+	  
+
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/chart.min.js"></script>
+	<script src="js/chart-data.js"></script>
+	<script src="js/easypiechart.js"></script>
+	<script src="js/easypiechart-data.js"></script>
+	<script src="js/bootstrap-datepicker.js"></script>
+	<script src="js/custom.js"></script>
+	<script src="js/newstudent.js"></script>
+</body>
+</html>
